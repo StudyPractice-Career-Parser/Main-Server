@@ -10,6 +10,13 @@ import (
 	"github.com/spf13/viper"
 )
 
+// @title           GetVacancies
+// @version         1.0
+// @description     This is a sample server celler server.
+// @termsOfService  http://swagger.io/terms/
+
+// @host      localhost:8000
+// @BasePath  /
 func main() {
 	if err := InitConfig(); err != nil {
 		log.Fatalf("error occured while reading config")
