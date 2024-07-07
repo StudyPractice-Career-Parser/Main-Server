@@ -40,6 +40,8 @@ func (h *Handler) getVacancies(c *gin.Context) {
 		company = companies[0]
 	}
 
+	fmt.Println("Input:", name, company, salary)
+
 	searchBody := parser.SearchVacancies{
 		Name:     name,
 		Company:  company,
@@ -48,7 +50,7 @@ func (h *Handler) getVacancies(c *gin.Context) {
 	}
 	postBody, _ := json.Marshal(searchBody)
 
-	req, _ := http.NewRequest("POST", "http://127.0.0.1:8001/vacancies", bytes.NewBuffer(postBody))
+	req, _ := http.NewRequest("POST", "http://habr-parser:8001/vacancies", bytes.NewBuffer(postBody))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("accept", "application/json")
 
@@ -80,7 +82,7 @@ func (h *Handler) getVacancies(c *gin.Context) {
 	if err != nil {
 		fmt.Printf("Error unmarshaling data from request.\n%s\n", err.Error())
 	}
-	fmt.Println(result)
+	fmt.Printf("Output: %#v\n", result)
 	resp.Body.Close()
 	// jsonResult, err := json.Marshal(result)
 	// if err != nil {
